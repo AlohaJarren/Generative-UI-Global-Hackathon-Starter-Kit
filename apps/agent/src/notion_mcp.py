@@ -50,7 +50,13 @@ def _client_config() -> Dict[str, Any]:
             "notion": {
                 "command": "npx",
                 "args": ["-y", "@notionhq/notion-mcp-server"],
-                "env": {"NOTION_TOKEN": token},
+                "env": {
+    			"NOTION_TOKEN": token,
+    			"OPENAPI_MCP_HEADERS": json.dumps({
+        		"Authorization": f"Bearer {token}",
+        		"Notion-Version": "2025-09-03",
+    		}),
+		},
             }
         }
     }
